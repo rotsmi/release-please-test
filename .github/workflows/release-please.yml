@@ -1,0 +1,37 @@
+name: release-please
+on:
+  push:
+    branches:
+      - main
+jobs:
+  release_please:
+    name: Automated Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: release-please-action
+        uses: google-github-actions/release-please-action@v3.0.0
+        id: release
+        with:
+          monorepo-tags: true
+          package-name: "sub-repo1"
+          release-type: python
+
+      - name: Check out repo
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install Python dependencies
+        run: |
+          sudo apt install -y $(grep -o ^[^#][[:alnum:]-]* "packages.list")
+          python3 -m pip install --upgrade pip
+          pip3 install -r requirements.txt
+
+      - name: Test with pytest
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          pytest --exitfirst --verbose --failed-first \
+          --cov=. --cov-report html
