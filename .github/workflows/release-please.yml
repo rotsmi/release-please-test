@@ -13,7 +13,6 @@ jobs:
         id: release
         with:
           monorepo-tags: true
-          package-name: "sub-repo1"
           release-type: python
 
       - name: Check out repo
