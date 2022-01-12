@@ -20,3 +20,6 @@ def test_success_capital_case():
 
 def test_one_capital_case():
     assert capital_case('one') == 'One'
+
+def test_two_capital_case():
+    assert capital_case('two') == 'Two'
