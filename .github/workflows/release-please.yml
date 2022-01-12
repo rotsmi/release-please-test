@@ -13,7 +13,6 @@ jobs:
         id: release
         with:
           monorepo-tags: true
-          release-type: python
 
       - name: Check out repo
         uses: actions/checkout@v2
