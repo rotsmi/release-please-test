@@ -12,3 +12,6 @@ def test_addition_fail():
 
 def test_addition_success():
     assert addition(10,20) == 30
+
+def test_addition_success_2():
+    assert addition(10,30) == 40
