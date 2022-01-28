@@ -26,3 +26,6 @@ def test_two_capital_case():
 
 def test_one_capital_case_fail():
     assert capital_case('fail') != 'fail'
+
+def test_one_capital_case_success():
+    assert capital_case('success') != 'Success'
